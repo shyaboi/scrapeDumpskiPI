@@ -2,6 +2,7 @@ var URLmatcher = require('./mod')
 var cs = new URLmatcher()
 var http = require('http')
 var https = require('https')
+require('events').EventEmitter.defaultMaxListeners = 888;
 
 // https://burst.shopify.com/  image scrapping template
 for (let page = 2; page < 26; page++) {

@@ -15,8 +15,9 @@ URLmatcher.prototype._write = function(chunk, encoding, cb){
     var matches = chunk.toString().match(this.matcher);
     if (matches == null){console.log("dumping nulls")}
     else{
+        splot = matches; 
         mToHtml = `<img class="lazy" src='${matches}' width="450" height="500" />`
-        fs.appendFileSync("imageHell.html", mToHtml, ()=> {console.log("link barf wrote")})}
+        fs.appendFileSync("terst.html", mToHtml, ()=> {console.log("link barf wrote")})}
     if (matches){
         this.count += matches.length;
     }
