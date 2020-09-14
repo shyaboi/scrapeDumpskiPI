@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nPoP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <div id="mainContainer">
+    <h1>Documentation</h1>
+   
+    (This is very much a work in progress.)  Currently in <h1> αlpha 0.0.25</h1></p>
+    <br>
+    <a href="https://www.npmjs.com/package/npop">npm page</a>
+    <br>
+    <a href="/">home</a>
+    <br>
+    <h1>Installers</h1>
+    <a href="/downloadzip">Windows Installer Zip</a>
+    <br>
+    A quick instruction on windows installation. After downloading, simply extraxt the file anywhere you want, and run the .exe in the root folder. This binary will download the latest Node.JS, install it, and npx npop to your desktop all with only a double click.
+    <br>
+
+    <!-- <a href="/downloadfull">Windows Installer Full</a>
+    <br> -->
+    <h1 id="npop">nPoP</h1>
+    <p>
+      In its current form (nPoP ex) nPoP is a quick-start package/dead simple
+      server built on top of the express framework. <br />
+    </p>
+    <h1 id="installation-there-are-two-option-for-using-installing-npop">
+      Installation: There are two option for using/installing nPoP
+    </h1>
+    <h2 id="npx-npop">npx npop</h2>
+    <p>
+      Make sure you already have Nodejs installed, to check, open a terminal and
+      type
+    </p>
+    <code><span class="hljs-keyword">node --version</span> </code>
+    <p>
+      If you do not have Nodejs installed, you can download the 
+      <a href="">nPoP Windows zip installer</a> 
+      Or only download Node.js alone from 
+      <a href="https://nodejs.org/en/download/">here</a>
+    </p>
+    <p>
+      Once you have node installed, simply open a terminal to the
+      directory/folder you want nPoP installed in, and in the terminal type:
+    </p>
+    <pre><code>npx npop</code></pre>
+    <p>
+      A full nPoP server with 3 routes and associated HTML files with routes set
+      up to handle images/js/css/ and a JSON get/post route. This will all be
+      set up and if you have vs code, your editor will open the nPoP folder and
+      your default browser will open to the default localhost:3333
+    </p>
+    <h2 id="install-the-starter-package">Install the Starter Package</h2>
+    <p>To install a barebones nPoP server. In your open project,</p>
+    <pre><code>npm install npop</code></pre>
+    <p>
+      this will have nPoP installed with express as a dependency and those that
+      come with express(body-parser...etc)
+    </p>
+    <p>to use nPoP in your Nodejs project add:</p>
+    <pre><code>const <span class="hljs-keyword">PoP</span> = require(<span class="hljs-string">"npop"</span>);
+    const n = <span class="hljs-keyword">new</span> <span class="hljs-keyword">PoP</span>()
+    n.<span class="hljs-keyword">pop</span>()</code></pre><p>
+      If you have made a &quot;views&quot; dicrectory/folder the server will
+      have 3 default routes pointed at the views dicrectory/folder.
+    </p>
+    <h1 id="npop-parameters">nPoP Parameters</h1>
+    <p>You can pass in the following parameters into the npop function(example shows default parameters):</p>
+    <pre><code>n.pop(<span class="hljs-name">
+      homeGet(), //this parameter can be fed a function containing request and response from express.//
+      indexGet(), //this parameter can be fed a function containing request and response from express.//
+      dexyGet(), //this parameter can be fed a function containing request and response from express.//
+      PORT:process.env.PORT||3333,
+      routeArray=[route1="/",route2="/index",route3='/dexy']
+    )</code></pre>
+    <p>An example of leaving the default values and only changing the later paramerters:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()
+    n.pop(<span class="hljs-literal">undefined</span>, undefined, undefined,<span class="hljs-number">3000</span>)</code></pre><p>In the above function the dexyGet function is left default, and only the port has been set manualy. This can be done for any number of paramerters that want to be left default, just use &quot;undefined&quot; in the parameters place.</p>
+    
+    <h1 id="dexyget-">dexyGet()</h1>
+    <p>dexyGet( ) is the first customizable route function in nPoP</p>
+    <p>
+      Basically dexyGet( ) is the function parameter of the Express GET request
+      for route3 built into nPoP.
+    </p>
+    <p>an example of how the dexyGet( ) route is working is like so:</p>
+    <pre><code>app.<span class="hljs-keyword">get</span>(route3, 
+        dexyGet(<span class="hljs-built_in">request</span>,<span class="hljs-built_in">response</span>){}
+    )</code></pre>
+    <p>
+      The parameters inside of the dexyGet function are user created variables
+      such as:
+    </p>
+    <pre><code><span class="hljs-function"><span class="hljs-title">dexyGet</span><span class="hljs-params">(yourReqVar, yourResVar)</span></span>{}</code></pre>
+    <p>
+      For brevity; I will be referring to the variables hereafter as req and
+      res. So if you want to customize the dexyGet( ) route, you can do so just
+      like the function parameter of an express GET route.
+    </p>
+    <p>In the first parameter of the nPoP function Write:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()
+    n.pop(<span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span> {res.send(<span class="hljs-string">'hiwrld'</span>)})</code></pre><p>Or you can pass in the function as a variable such as:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()    
+    <span class="hljs-keyword">const</span> dexyGet = <span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span> {res.send(<span class="hljs-string">'hiwrld'</span>)}
+    n.pop(dexyGet)</code></pre>
+    <p>
+      All sequential parameters are optional and will be set by default unless
+      otherwise given a parameter.
+    </p>
+  </body>
+</html>
+</div><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nPoP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <div id="mainContainer">
+    <h1>Documentation</h1>
+   
+    (This is very much a work in progress.)  Currently in <h1> αlpha 0.0.25</h1></p>
+    <br>
+    <a href="https://www.npmjs.com/package/npop">npm page</a>
+    <br>
+    <a href="/">home</a>
+    <br>
+    <h1>Installers</h1>
+    <a href="/downloadzip">Windows Installer Zip</a>
+    <br>
+    A quick instruction on windows installation. After downloading, simply extraxt the file anywhere you want, and run the .exe in the root folder. This binary will download the latest Node.JS, install it, and npx npop to your desktop all with only a double click.
+    <br>
+
+    <!-- <a href="/downloadfull">Windows Installer Full</a>
+    <br> -->
+    <h1 id="npop">nPoP</h1>
+    <p>
+      In its current form (nPoP ex) nPoP is a quick-start package/dead simple
+      server built on top of the express framework. <br />
+    </p>
+    <h1 id="installation-there-are-two-option-for-using-installing-npop">
+      Installation: There are two option for using/installing nPoP
+    </h1>
+    <h2 id="npx-npop">npx npop</h2>
+    <p>
+      Make sure you already have Nodejs installed, to check, open a terminal and
+      type
+    </p>
+    <code><span class="hljs-keyword">node --version</span> </code>
+    <p>
+      If you do not have Nodejs installed, you can download the 
+      <a href="">nPoP Windows zip installer</a> 
+      Or only download Node.js alone from 
+      <a href="https://nodejs.org/en/download/">here</a>
+    </p>
+    <p>
+      Once you have node installed, simply open a terminal to the
+      directory/folder you want nPoP installed in, and in the terminal type:
+    </p>
+    <pre><code>npx npop</code></pre>
+    <p>
+      A full nPoP server with 3 routes and associated HTML files with routes set
+      up to handle images/js/css/ and a JSON get/post route. This will all be
+      set up and if you have vs code, your editor will open the nPoP folder and
+      your default browser will open to the default localhost:3333
+    </p>
+    <h2 id="install-the-starter-package">Install the Starter Package</h2>
+    <p>To install a barebones nPoP server. In your open project,</p>
+    <pre><code>npm install npop</code></pre>
+    <p>
+      this will have nPoP installed with express as a dependency and those that
+      come with express(body-parser...etc)
+    </p>
+    <p>to use nPoP in your Nodejs project add:</p>
+    <pre><code>const <span class="hljs-keyword">PoP</span> = require(<span class="hljs-string">"npop"</span>);
+    const n = <span class="hljs-keyword">new</span> <span class="hljs-keyword">PoP</span>()
+    n.<span class="hljs-keyword">pop</span>()</code></pre><p>
+      If you have made a &quot;views&quot; dicrectory/folder the server will
+      have 3 default routes pointed at the views dicrectory/folder.
+    </p>
+    <h1 id="npop-parameters">nPoP Parameters</h1>
+    <p>You can pass in the following parameters into the npop function(example shows default parameters):</p>
+    <pre><code>n.pop(<span class="hljs-name">
+      homeGet(), //this parameter can be fed a function containing request and response from express.//
+      indexGet(), //this parameter can be fed a function containing request and response from express.//
+      dexyGet(), //this parameter can be fed a function containing request and response from express.//
+      PORT:process.env.PORT||3333,
+      routeArray=[route1="/",route2="/index",route3='/dexy']
+    )</code></pre>
+    <p>An example of leaving the default values and only changing the later paramerters:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()
+    n.pop(<span class="hljs-literal">undefined</span>, undefined, undefined,<span class="hljs-number">3000</span>)</code></pre><p>In the above function the dexyGet function is left default, and only the port has been set manualy. This can be done for any number of paramerters that want to be left default, just use &quot;undefined&quot; in the parameters place.</p>
+    
+    <h1 id="dexyget-">dexyGet()</h1>
+    <p>dexyGet( ) is the first customizable route function in nPoP</p>
+    <p>
+      Basically dexyGet( ) is the function parameter of the Express GET request
+      for route3 built into nPoP.
+    </p>
+    <p>an example of how the dexyGet( ) route is working is like so:</p>
+    <pre><code>app.<span class="hljs-keyword">get</span>(route3, 
+        dexyGet(<span class="hljs-built_in">request</span>,<span class="hljs-built_in">response</span>){}
+    )</code></pre>
+    <p>
+      The parameters inside of the dexyGet function are user created variables
+      such as:
+    </p>
+    <pre><code><span class="hljs-function"><span class="hljs-title">dexyGet</span><span class="hljs-params">(yourReqVar, yourResVar)</span></span>{}</code></pre>
+    <p>
+      For brevity; I will be referring to the variables hereafter as req and
+      res. So if you want to customize the dexyGet( ) route, you can do so just
+      like the function parameter of an express GET route.
+    </p>
+    <p>In the first parameter of the nPoP function Write:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()
+    n.pop(<span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span> {res.send(<span class="hljs-string">'hiwrld'</span>)})</code></pre><p>Or you can pass in the function as a variable such as:</p>
+    <pre><code><span class="hljs-keyword">const</span> PoP = <span class="hljs-built_in">require</span>(<span class="hljs-string">"npop"</span>);
+    <span class="hljs-keyword">const</span> n = <span class="hljs-keyword">new</span> PoP()    
+    <span class="hljs-keyword">const</span> dexyGet = <span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span> {res.send(<span class="hljs-string">'hiwrld'</span>)}
+    n.pop(dexyGet)</code></pre>
+    <p>
+      All sequential parameters are optional and will be set by default unless
+      otherwise given a parameter.
+    </p>
+  </body>
+</html>
+</div>
